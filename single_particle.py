@@ -17,15 +17,7 @@ from k_L^2 = 2 E_L.
 
 Lower band:
     E_-(q)/E_L = q^2 - sqrt[(2q + d/2)^2 + (O/2)^2]
-
-KEY PHYSICS:
-    At delta = 0:  sharp 2nd-order PW -> ZM transition at  Omega_c = 4 E_L.
-    At delta != 0: q_min varies smoothly -- NO sharp transition exists in the
-                   single-particle spectrum.  A true 1st-order phase boundary
-                   at finite delta emerges ONLY when mean-field interactions
-                   are included.
-
-References
+    
 ----------
 [1] Lin, Jimenez-Garcia, Spielman, Nature 471, 83 (2011)
 [2] Li et al., PRL 108, 225301 (2012)
@@ -38,21 +30,21 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import TwoSlopeNorm
 
 
-# ============================================================================
-#  0.  Unit conversion
-# ============================================================================
+''' ============================================================================
+  Unit conversion
+ ============================================================================'''
 
 def recoil_energy_hz(mass_amu, wavel_m):
     """Compute the recoil energy E_L = hbar^2 k_L^2 / (2m) in Hz.
 
-    Parameters
+    Parameters:
     ----------
     mass_amu : float
         Atomic mass in unified atomic mass units.
     wavel_m : float
         Raman laser wavelength in metres.  k_L = 2pi / wavel_m.
 
-    Returns
+    Returns:
     -------
     EL_hz : float
         Recoil energy in Hz  (i.e. E_L / h).
@@ -71,9 +63,9 @@ SPECIES = {
 }
 
 
-# ============================================================================
-#  1.  Lower-band dispersion
-# ============================================================================
+''' ============================================================================
+    Lower-band dispersion
+ ============================================================================'''
 
 def lower_band(q, omega, delta):
     """Lower dressed-band energy E_-(q) in recoil units.
@@ -115,32 +107,33 @@ def qmin_analytic_delta0(omega):
     return np.where(sq > 0, np.sqrt(sq), 0.0)
 
 
-# ============================================================================
-#  1b.  Dressed spin composition
-# ============================================================================
-#
-# At each q the lower-band eigenstate of
-#
-#   H(q) = | q^2 + 2q + d/2     O/2     |
-#          |     O/2       q^2 - 2q - d/2 |
-#
-# is  |-,q> = cos(theta_q/2)|up> - sin(theta_q/2)|dn>  with
-#
-#   tan(theta_q) = (O/2) / (2q + d/2)
-#
-# The Pauli-z expectation value in this state is
-#
-#   <sigma_z>(q) = -(2q + d/2) / sqrt[(2q + d/2)^2 + (O/2)^2]
-#
-# The sign convention here is such that  <sigma_z> -> +1  for delta -> -inf
-# (system polarised into |up>) and  <sigma_z> -> -1  for delta -> +inf, which
-# matches the Lin et al. (2011) figure where the |down> band lies above the
-# |up> band at delta > 0.
+'''
+ ============================================================================
+  1b.  Dressed spin composition
+ ============================================================================
+
+ At each q the lower-band eigenstate of
+
+   H(q) = | q^2 + 2q + d/2     O/2     |
+          |     O/2       q^2 - 2q - d/2 |
+
+ is  |-,q> = cos(theta_q/2)|up> - sin(theta_q/2)|dn>  with
+
+   tan(theta_q) = (O/2) / (2q + d/2)
+
+ The Pauli-z expectation value in this state is
+
+   <sigma_z>(q) = -(2q + d/2) / sqrt[(2q + d/2)^2 + (O/2)^2]
+
+ The sign convention here is such that  <sigma_z> -> +1  for delta -> -inf
+ (system polarised into |up>) and  <sigma_z> -> -1  for delta -> +inf, which
+ matches the Lin et al. (2011) figure where the |down> band lies above the
+ |up> band at delta > 0.'''
 
 def sigma_z(q, omega, delta):
     """Pauli-z expectation in the lower dressed band at quasimomentum q.
 
-    Parameters
+    Parameters:
     ----------
     q : float or ndarray
         Quasimomentum in units of k_L.
@@ -149,7 +142,7 @@ def sigma_z(q, omega, delta):
     delta : float
         Detuning delta / E_L.
 
-    Returns
+    Returns:
     -------
     <sigma_z> : same shape as q,  in [-1, +1].
     """
@@ -175,10 +168,10 @@ def population_fraction_at_min(omega, delta):
     n_up = 0.5 * (1.0 + sz)
     return n_up, 1.0 - n_up
 
-
-# ============================================================================
-#  2.  Phase diagram scan
-# ============================================================================
+'''
+============================================================================
+Phase diagram scan
+============================================================================'''
 
 def scan_phase_diagram(omega_pts=300, delta_pts=300,
                        omega_range=(0.01, 8.0), delta_range=(-8.0, 8.0)):
@@ -233,12 +226,12 @@ def two_minimum_boundary(omega_arr):
     to delta = 0 at Omega = 4 E_L.  For Omega >= 4, the lower band always
     has a single minimum.
 
-    Parameters
+    Parameters:
     ----------
     omega_arr : array_like
         Raman coupling values in E_L units.  Must satisfy 0 < Omega <= 4.
 
-    Returns
+    Returns:
     -------
     delta_c : ndarray
         Critical |delta|/E_L (positive branch; boundary is symmetric in delta).
@@ -248,10 +241,10 @@ def two_minimum_boundary(omega_arr):
     delta_sq = 4.0 * (f**2 - omega**2 / 4.0) * (f - 2.0)**2 / f**2
     return np.sqrt(np.maximum(delta_sq, 0.0))
 
-
-# ============================================================================
-#  3.  GPE validation helpers
-# ============================================================================
+'''
+============================================================================
+GPE validation helpers
+============================================================================'''
 
 def classify_ground_state(psik, kx_array, kL_recoil, threshold=0.05):
     """Classify a converged GPE state as PW or ZM from its k-space density.
@@ -365,16 +358,16 @@ def run_gpe_validation(omega_EL_list, delta_EL_list, ps_kwargs,
 
     return results
 
-
-# ============================================================================
-#  4.  Plotting
-# ============================================================================
+'''
+============================================================================
+Plotting
+============================================================================'''
 
 def plot_phase_diagram(omegas, deltas, Q_MIN, EL_kHz=None,
                        save_path=None, show=True):
     """Single-particle phase diagram as |q_min| colour map.
 
-    Parameters
+    Parameters:
     ----------
     EL_kHz : float, optional
         Recoil energy in kHz.  If provided, axis labels and ticks are
@@ -602,10 +595,10 @@ def plot_sigma_z_slices(save_path=None, show=True):
         plt.show()
     return fig
 
-
-# ============================================================================
-#  Main
-# ============================================================================
+'''
+============================================================================
+Main
+============================================================================'''
 
 if __name__ == '__main__':
     print("Computing single-particle phase diagram...")
