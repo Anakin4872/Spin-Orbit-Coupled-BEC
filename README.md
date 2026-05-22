@@ -22,7 +22,7 @@ and the contact interactions.
 For $^{87}Rb$ in the canonical NIST setup the three intra/inter-spin scattering lengths are
 nearly identical and the symmetric Li/Stringari phase diagram applies. **In $^{39}K$ the picture
 changes qualitatively**: the broad $|F=1, m_F=+1\rangle \otimes |F=1, m_F=+1\rangle$ Feshbach
-resonance at $B_0 \simeq 402.9\,$G is a powerful experimental knob on $a_{\downarrow\downarrow}$
+resonance at $B_0 \simeq 402.9\,$ G is a powerful experimental knob on $a_{\downarrow\downarrow}$
 without comparable handles on the other two channels, so the relevant theory is the
 *asymmetric* extension (Martone, Pepe, Capuzzi, Pitaevskii, Stringari, PRA **86**, 063621 (2012)).
 The asymmetry $g_{\downarrow\downarrow}/g_{\uparrow\uparrow}$ in the working window is large —
