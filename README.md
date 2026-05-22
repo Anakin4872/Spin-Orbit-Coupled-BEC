@@ -9,9 +9,11 @@
 
 A pair of counter-propagating Raman lasers dresses a two-component BEC into a pseudospin-1/2
 system with a synthetic spin-orbit coupling of the Lin/Spielman form
+
 $$ 
 H_\mathrm{SOC} = (\hbar k_L/m)\,p_x\,\sigma_z + (\hbar\Omega/2)\,\sigma_x + (\hbar\delta/2)\,\sigma_z.
 $$
+
 The lower dressed band reorganizes into a competition between three many-body phases —
 a single plane-wave (PW), a stripe with broken translational symmetry, and a zero-momentum
 (ZM) phase — controlled by the Raman coupling $\Omega$, the two-photon detuning $\delta$,
