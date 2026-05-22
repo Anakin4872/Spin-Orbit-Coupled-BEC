@@ -9,14 +9,16 @@
 
 A pair of counter-propagating Raman lasers dresses a two-component BEC into a pseudospin-1/2
 system with a synthetic spin-orbit coupling of the Lin/Spielman form
-$H_\mathrm{SOC} = (\hbar k_L/m)\,p_x\,\sigma_z + (\hbar\Omega/2)\,\sigma_x + (\hbar\delta/2)\,\sigma_z$.
+$$ 
+H_\mathrm{SOC} = (\hbar k_L/m)\,p_x\,\sigma_z + (\hbar\Omega/2)\,\sigma_x + (\hbar\delta/2)\,\sigma_z.
+$$
 The lower dressed band reorganizes into a competition between three many-body phases —
 a single plane-wave (PW), a stripe with broken translational symmetry, and a zero-momentum
 (ZM) phase — controlled by the Raman coupling $\Omega$, the two-photon detuning $\delta$,
 and the contact interactions.
 
-For ⁸⁷Rb in the canonical NIST setup the three intra/inter-spin scattering lengths are
-nearly identical and the symmetric Li/Stringari phase diagram applies. **In ⁳⁹K the picture
+For $^{87}Rb$ in the canonical NIST setup the three intra/inter-spin scattering lengths are
+nearly identical and the symmetric Li/Stringari phase diagram applies. **In $^{39}K$ the picture
 changes qualitatively**: the broad $|F=1, m_F=+1\rangle \otimes |F=1, m_F=+1\rangle$ Feshbach
 resonance at $B_0 \simeq 402.9\,$G is a powerful experimental knob on $a_{\downarrow\downarrow}$
 without comparable handles on the other two channels, so the relevant theory is the
@@ -45,7 +47,7 @@ editable mode, then drop in the files of this repo over the corresponding paths.
 
 ## What this repo adds
 
-### ⁹K species support in the core simulator
+### $^{39}K$ species support in the core simulator
 
 - `spinor_gpe/constants.py` — atomic data for $^{39}K$ and a multi-pole Moerdijk
   parametrization of the three pseudospin-1/2 scattering channels
